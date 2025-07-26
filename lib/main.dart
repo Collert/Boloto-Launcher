@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: _onModpackSelected,
                         imagePath: "assets/images/echoes_icon.png",
                         description:
-                            "A thrilling adventure awaits in Echoes Untamed.",
+                            "A thrilling adventure awaits in Echoes Untamed. Explore vast worlds, conquer challenges, and uncover secrets. Join the journey today!",
                       ),
                       ModpackItem(
                         name: "Modpack 2",
@@ -117,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
           // RIGHT COLUMN - Main content
           ModpackPage(
             title: "Echoes Untamed",
-            description: "A thrilling adventure awaits in Echoes Untamed.",
+            description:
+                "A thrilling adventure awaits in Echoes Untamed. Explore vast worlds, conquer challenges, and uncover secrets. Join the journey today!",
             logoPath: "assets/images/echoes_logo.png",
             backgroundImagePath: "assets/images/echoes_bg.png",
           ),

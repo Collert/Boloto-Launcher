@@ -118,11 +118,14 @@ class ModpackPage extends StatelessWidget {
                           const SizedBox(height: 8),
                           Text("Odessa Server · 🟢 Online"),
                           const SizedBox(height: 4),
-                          Text(
-                            description,
-                            style: TextStyle(
-                              color: BolotoTheme.textOnDark,
-                              fontSize: 16,
+                          Container(
+                            width: 500,
+                            child: Text(
+                              description,
+                              style: TextStyle(
+                                color: BolotoTheme.textOnDark,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ],
@@ -163,16 +166,16 @@ class ModpackPage extends StatelessWidget {
                                       child: Wrap(
                                         runSpacing: 16,
                                         children: patchNotes.map((note) {
-                                          return ConstrainedBox(
-                                            constraints: BoxConstraints(
-                                              minWidth: double.infinity,
-                                            ),
-                                            child: PatchNote(
-                                              title: note.title,
-                                              content: note.content,
-                                              version: note.version,
-                                              date: note.date,
-                                            ),
+                                          return Row(
+                                            // width: double.infinity,
+                                            children: [
+                                              PatchNote(
+                                                title: note.title,
+                                                content: note.content,
+                                                version: note.version,
+                                                date: note.date,
+                                              ),
+                                            ],
                                           );
                                         }).toList(),
                                       ),

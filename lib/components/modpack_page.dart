@@ -2,6 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:lib_boloto_launcher/theme/boloto_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
+import 'package:lib_boloto_launcher/components/patch_note.dart';
+
+class PatchNoteData {
+  final String title;
+  final String content;
+  final String version;
+  final String date;
+
+  PatchNoteData({
+    required this.title,
+    required this.content,
+    required this.version,
+    required this.date,
+  });
+}
+
+final List<PatchNoteData> patchNotes = [
+  PatchNoteData(
+    title: 'Version 1.0',
+    content: 'Initial release with core features.',
+    version: '1.0',
+    date: '2023-10-01',
+  ),
+  PatchNoteData(
+    title: 'Version 1.1',
+    content: 'Bug fixes and performance improvements.',
+    version: '1.1',
+    date: '2023-10-02',
+  ),
+];
 
 class ModpackPage extends StatelessWidget {
   final String title;
@@ -109,7 +139,7 @@ class ModpackPage extends StatelessWidget {
                             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                             child: Container(
                               width: 300,
-                              color: BolotoTheme.primaryAccent.withOpacity(0.3),
+                              color: BolotoTheme.background.withOpacity(0.3),
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
@@ -125,6 +155,28 @@ class ModpackPage extends StatelessWidget {
                                         style: TextStyle(fontSize: 18),
                                       ),
                                     ],
+                                  ),
+                                  SizedBox(height: 15),
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: Wrap(
+                                        runSpacing: 16,
+                                        children: patchNotes.map((note) {
+                                          return ConstrainedBox(
+                                            constraints: BoxConstraints(
+                                              minWidth: double.infinity,
+                                            ),
+                                            child: PatchNote(
+                                              title: note.title,
+                                              content: note.content,
+                                              version: note.version,
+                                              date: note.date,
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),

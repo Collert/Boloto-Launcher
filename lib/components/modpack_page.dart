@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lib_boloto_launcher/theme/boloto_theme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
-import 'package:lib_boloto_launcher/components/patch_note.dart';
+import 'package:lib_boloto_launcher/components/patch-notes-section.dart';
 
 class PatchNoteData {
   final String title;
@@ -160,27 +159,7 @@ class ModpackPage extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(height: 15),
-                                  Expanded(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.vertical,
-                                      child: Wrap(
-                                        runSpacing: 16,
-                                        children: patchNotes.map((note) {
-                                          return Row(
-                                            // width: double.infinity,
-                                            children: [
-                                              PatchNote(
-                                                title: note.title,
-                                                content: note.content,
-                                                version: note.version,
-                                                date: note.date,
-                                              ),
-                                            ],
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ),
+                                  PatchNotesSection(),
                                 ],
                               ),
                             ),

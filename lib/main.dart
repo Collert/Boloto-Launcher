@@ -4,6 +4,7 @@ import 'l10n/app_localizations.dart';
 import 'components/modpack_item.dart';
 import 'package:window_manager/window_manager.dart';
 import 'components/modpack_page.dart';
+import 'package:lib_boloto_launcher/hover-box.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -105,9 +106,75 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Icon(Icons.settings, color: Colors.white),
-                      Icon(Icons.help_outline, color: Colors.white),
-                      Icon(Icons.bug_report, color: Colors.white),
+                      HoverBox(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Handle settings action
+                          },
+
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                              width: 0,
+                              color: Colors.transparent,
+                            ),
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(20),
+                          ),
+                          child: Icon(
+                            Icons.settings,
+                            size: 20,
+                            color: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.color,
+                          ),
+                        ),
+                      ),
+                      HoverBox(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Handle settings action
+                          },
+
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                              width: 0,
+                              color: Colors.transparent,
+                            ),
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(20),
+                          ),
+                          child: Icon(
+                            Icons.help_outline,
+                            size: 20,
+                            color: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.color,
+                          ),
+                        ),
+                      ),
+                      HoverBox(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Handle settings action
+                          },
+
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                              width: 0,
+                              color: Colors.transparent,
+                            ),
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(20),
+                          ),
+                          child: Icon(
+                            Icons.bug_report,
+                            size: 20,
+                            color: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.color,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

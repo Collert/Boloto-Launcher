@@ -62,6 +62,9 @@ class ModpackItem extends StatelessWidget {
                       imagePath ?? 'assets/images/echoes_icon.png',
                       width: 40,
                       height: 40,
+                      color: isSelected
+                          ? Theme.of(context).textTheme.bodyMedium?.color
+                          : Colors.grey[300],
                     )
                   : Icon(Icons.av_timer, size: 40, color: Colors.grey)),
               const SizedBox(width: 12),
@@ -70,7 +73,9 @@ class ModpackItem extends StatelessWidget {
                   name,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: isSelected ? Colors.white : Colors.grey[300],
+                    color: isSelected
+                        ? Theme.of(context).textTheme.bodyMedium?.color
+                        : Colors.grey[300],
                     fontSize: 16,
                   ),
                 ),

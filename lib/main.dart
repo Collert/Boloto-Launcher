@@ -182,13 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           // RIGHT COLUMN - Main content
-          ModpackPage(
-            title: "Echoes Untamed",
-            description:
-                "A thrilling adventure awaits in Echoes Untamed. Explore vast worlds, conquer challenges, and uncover secrets. Join the journey today!",
-            logoPath: "assets/images/echoes_logo.png",
-            backgroundImagePath: "assets/images/echoes_bg.png",
-          ),
+          ModpackPage(id: 0),
         ],
       ),
     );

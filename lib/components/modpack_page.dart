@@ -3,48 +3,39 @@ import 'package:lib_boloto_launcher/theme/boloto_theme.dart';
 import 'dart:ui';
 import 'package:lib_boloto_launcher/components/patch-notes-section.dart';
 
-class PatchNoteData {
+class ModpackData {
+  final int id;
   final String title;
-  final String content;
-  final String version;
-  final String date;
+  final String description;
+  final String logoPath;
+  final String bgPath;
 
-  PatchNoteData({
+  ModpackData({
+    required this.id,
     required this.title,
-    required this.content,
-    required this.version,
-    required this.date,
+    required this.description,
+    required this.logoPath,
+    required this.bgPath,
   });
 }
 
-final List<PatchNoteData> patchNotes = [
-  PatchNoteData(
-    title: 'Version 1.0',
-    content: 'Initial release with core features.',
-    version: '1.0',
-    date: '2023-10-01',
-  ),
-  PatchNoteData(
-    title: 'Version 1.1',
-    content: 'Bug fixes and performance improvements.',
-    version: '1.1',
-    date: '2023-10-02',
+final List<ModpackData> modpacks = [
+  ModpackData(
+    id: 0,
+    title: "Echoes Untamed",
+    description:
+        "A thrilling adventure awaits in Echoes Untamed. Explore vast worlds, conquer challenges, and uncover secrets. Join the journey today!",
+    logoPath: "assets/images/echoes_logo.png",
+    bgPath: "assets/images/echoes_bg.png",
   ),
 ];
 
 class ModpackPage extends StatelessWidget {
-  final String title;
-  final String description;
-  final String logoPath;
-  final String backgroundImagePath;
+  final int id;
 
-  const ModpackPage({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.logoPath,
-    required this.backgroundImagePath,
-  });
+  const ModpackPage({super.key, required this.id});
+
+  ModpackData get modpack => modpacks.firstWhere((modpack) => modpack.id == id);
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -120,7 +111,7 @@ class ModpackPage extends StatelessWidget {
                           Container(
                             width: 500,
                             child: Text(
-                              description,
+                              modpack.description,
                               style: TextStyle(
                                 color: BolotoTheme.textOnDark,
                                 fontSize: 16,

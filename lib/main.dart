@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:lib_boloto_launcher/main-content.dart';
 import 'package:lib_boloto_launcher/theme/boloto_theme.dart';
 import 'l10n/app_localizations.dart';
-import 'components/modpack_item.dart';
+import 'components/modpack/modpack_item.dart';
 import 'package:window_manager/window_manager.dart';
-import 'components/modpack_page.dart';
+import 'components/modpack/modpack_page.dart';
 import 'package:lib_boloto_launcher/hover-box.dart';
+import 'package:lib_boloto_launcher/components/settings/settings-page.dart';
+import "package:lib_boloto_launcher/pages.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,12 +51,28 @@ class _MyHomePageState extends State<MyHomePage> {
   //   });
   // }
 
-  int _selectedModpackIndex = 0;
+  PageType currentPage = PageType.echoes;
 
-  void _onModpackSelected(int index) {
+  void selectPage(PageType page) {
     setState(() {
-      _selectedModpackIndex = index;
+      currentPage = page;
     });
+  }
+
+  Widget _buildCurrentPage() {
+    Widget child;
+    switch (currentPage) {
+      case PageType.settings:
+        child = const SettingsPage();
+        break;
+      case PageType.echoes:
+        child = const ModpackPage(page: PageType.echoes);
+        break;
+      default:
+        child = const Center(child: Text('Page not found'));
+    }
+    // Wrap with KeyedSubtree to ensure AnimatedSwitcher detects changes
+    return KeyedSubtree(key: ValueKey(currentPage), child: child);
   }
 
   @override
@@ -74,28 +93,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       // Repeat for each modpack
                       ModpackItem(
                         name: "Echoes Untamed",
-                        selected: _selectedModpackIndex,
-                        index: 0,
-                        onTap: _onModpackSelected,
+                        selected: currentPage,
+                        page: PageType.echoes,
+                        onTap: selectPage,
                         imagePath: "assets/images/echoes_icon.png",
-                        description:
-                            "A thrilling adventure awaits in Echoes Untamed. Explore vast worlds, conquer challenges, and uncover secrets. Join the journey today!",
                       ),
                       ModpackItem(
                         name: "Modpack 2",
-                        selected: _selectedModpackIndex,
-                        index: 1,
-                        onTap: _onModpackSelected,
+                        selected: currentPage,
+                        page: PageType.modpack2,
+                        onTap: selectPage,
                         imagePath: "assets/images/echoes_bg.png",
-                        description: "Experience the wonders of Modpack 2.",
                       ),
                       ModpackItem(
                         name: "More soon...",
-                        selected: _selectedModpackIndex,
-                        index: 1000,
-                        onTap: _onModpackSelected,
+                        selected: currentPage,
+                        page: PageType.moreSoon,
+                        onTap: selectPage,
                         isClickable: false,
-                        description: "More content coming soon...",
                       ),
                     ],
                   ),
@@ -109,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       HoverBox(
                         child: OutlinedButton(
                           onPressed: () {
-                            // Handle settings action
+                            selectPage(PageType.settings);
                           },
 
                           style: OutlinedButton.styleFrom(
@@ -182,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           // RIGHT COLUMN - Main content
-          ModpackPage(id: 0),
+          Expanded(child: MainContent(child: _buildCurrentPage())),
         ],
       ),
     );

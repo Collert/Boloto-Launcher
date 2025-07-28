@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:lib_boloto_launcher/pages.dart';
 // import 'package:lib_boloto_launcher/theme/boloto_theme.dart';
 
 class ModpackItem extends StatelessWidget {
-  final int index;
+  final PageType page;
   final String name;
-  final int selected;
+  final PageType selected;
   final bool isClickable;
-  bool get isSelected => index == selected;
-  final void Function(int)? onTap;
+  bool get isSelected => page == selected;
+  final void Function(PageType)? onTap;
   final String? imagePath;
-  final String description;
 
   const ModpackItem({
     super.key,
-    required this.index,
+    required this.page,
     required this.name,
     required this.selected,
-    required this.description,
     required this.onTap,
     this.imagePath,
     this.isClickable = true,
@@ -27,7 +26,7 @@ class ModpackItem extends StatelessWidget {
     return MouseRegion(
       cursor: isClickable ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
-        onTap: isClickable ? () => onTap?.call(index) : null,
+        onTap: isClickable ? () => onTap?.call(page) : null,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

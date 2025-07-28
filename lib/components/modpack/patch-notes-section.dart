@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lib_boloto_launcher/components/patch_note.dart';
+import 'package:lib_boloto_launcher/components/modpack/patch_note.dart';
 
 class PatchNoteData {
   final String title;
